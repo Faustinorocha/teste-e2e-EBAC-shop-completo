@@ -2,11 +2,12 @@ import { elements as el } from "./elements"
 
 class LoginPage {
     acessarPaginaLogin() {
-        cy.visit('/minha-conta/');
+        cy.visit('/');
+        cy.get(el.iconeAcessarLogin).should('be.visible').click()
     };
 
     realizarLogin(email, senha) {
-        this.acessarPaginaLogin()
+        
         cy.get(el.campoUsuarioLogin).type(email);
         cy.get(el.campoSenhaLogin).type(senha);
         cy.get(el.botaoLogin).click();
@@ -15,12 +16,12 @@ class LoginPage {
     realizarLogout() {
         cy.get(el.botaoSair).click()
     }
+    realizarLoginSemCredenciais() {
+        
+      
+        cy.get(el.botaoLogin).click();
+    };
 
-    realizarRegistroNovoUsuario(email, senha) {
-        cy.get(el.campoEmailRegistro).type(email)
-        cy.get(el.campoSenhaRegistro).type(senha)
-        cy.get(el.botaoRegistro).click()
-    }
 };
 
 export default new LoginPage();

@@ -7,10 +7,7 @@ class MinhaContaPage {
         cy.get(el.botaoDetalhesConta).click()
     }
 
-    preencherEnderecoCobranca() {
-        cy.visit('/minha-conta/edit-address/')
-        cy.get(el.botaoEditarEnderecos).eq(0).click()
-    }
+  
 }
 
 export default new MinhaContaPage();
