@@ -1,16 +1,12 @@
 import loginPage from '../pages/loginPage'
 import cadastroPage from '../pages/cadastroPage'
-import enderecoCobrancaPage from '../pages/enderecoCobrancaPage'
+import enderecoFaturamentoPage from '../pages/enderecoFaturamentoPage'
 import { elements as elMinhaConta } from '../pages/minhaContaPage/elements'
-import { elements as elLoginPage } from '../pages/loginPage/elements'
-import { elements as elEnderecoCobranca } from '../pages/enderecoCobrancaPage/elements'
+import { elements as elEnderecoFaturmaneto } from '../pages/enderecoFaturamentoPage/elements'
 import detalhesContaPage from '../pages/detalhesContaPage/index'
 import enderecoEntregaPage from '../pages/enderecoEntregaPage'
 import { criarEndereco } from '../factories/enderecoFactory'
 import { dadosNovoUsuario } from '../factories/criarNovoUsuario'
-import { it } from '@faker-js/faker'
-
-
 
 
 describe('Pré cadastro', () => {
@@ -37,13 +33,13 @@ describe('Pré cadastro', () => {
                 detalhesContaPage.atualizarDadosDaConta(dadosUsuario.nome, dadosUsuario.sobrenome)
 
                 cy.get(elMinhaConta.mensagemMinhaContaAlterada).should('be.visible')
-                    .end('contain', 'Detalhes da conta modificados com sucesso')
+                    .and('contain', 'Detalhes da conta modificados com sucesso')
 
-            });
+            })
 
-            it('Deve preencher dados de endereço de cobrança válidos', () => {
+            it('Deve preencher dados de endereço de faturamento válidos', () => {
 
-                enderecoCobrancaPage.preencherEnderecoCobranca(endereco)
+                enderecoFaturamentoPage.preencherEnderecoFaturamento(endereco)
 
                 cy.get(elMinhaConta.mensagemMinhaContaAlterada).should('be.visible')
 
@@ -60,11 +56,11 @@ describe('Pré cadastro', () => {
         })
 
         context('E informa dados inválidos', () => {
-            it('Deve deixar os dados de endereço de cobrança em branco', () => {
+            it('Deve deixar os dados de endereço de faturamento em branco', () => {
 
-                enderecoCobrancaPage.salvarEnderecoCobrancaSemPreencher()
+                enderecoFaturamentoPage.salvarEnderecoFaturamentoSemPreencher()
 
-                cy.get(elEnderecoCobranca.mensagemErroCadastro).should('be.visible')
+                cy.get(elEnderecoFaturmaneto.mensagemErroCadastro).should('be.visible')
                     .and('contain', 'Nome é um campo obrigatório')
                     .and('contain', 'Sobrenome é um campo obrigatório')
                     .and('contain', 'Endereço é um campo obrigatório')
@@ -73,16 +69,31 @@ describe('Pré cadastro', () => {
                     .and('contain', 'Telefone é um campo obrigatório')
             });
 
-            it('Deve exibir erro ao salvar endereço sem CEP', () => {
-                
+            it('Deve exibir erro ao salvar endereço de faturamento sem CEP', () => {
+
+                enderecoFaturamentoPage.salvarEnderecoFaturamentoSemCEP(endereco)
+
+                cy.get(elEnderecoFaturmaneto.mensagemErroCadastro)
+                    .should('be.visible')
+                    .and('contain', 'CEP é um campo obrigatório')
+
             });
 
-            it('Deve exibir erro ao salvar endereço sem telefone', () => {
-                
+            it('Deve exibir erro ao salvar endereço faturamento sem telefone', () => {
+
+                enderecoFaturamentoPage.salvarEnderecoFaturamentoSemTelefone(endereco)
+                cy.get(elEnderecoFaturmaneto.mensagemErroCadastro)
+                    .should('be.visible')
+                    .and('contain', 'Telefone é um campo obrigatório')
             });
 
-            it('Deve deixar os dados de endereço de cobrança em branco', () => {
-                
+            it('Deve deixar erro ao salvar endereço de faturamento sem o campo endereço', () => {
+
+                enderecoFaturamentoPage.preencherEnderecoFaturamentoSemEndereco(endereco)
+
+                cy.get(elEnderecoFaturmaneto.mensagemErroCadastro)
+                    .should('be.visible')
+                    .and('contain', 'Endereço é um campo obrigatório')
             });
         })
     });
