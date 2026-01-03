@@ -72,7 +72,7 @@ class EnderecoFaturamentoPage {
 
         cy.get(el.botaoSalvarEndereco).click()
     }
-    preencherEnderecoFaturamentoSemEndereco(enderecoFaturamento) {
+    preencherEnderecoFaturamentoSemOCampoEndereco(enderecoFaturamento) {
         cy.get(elMinhaConta.botaoEndereco).click()
         cy.get(elMinhaConta.botaoEditarEnderecos).eq(0).click()
         cy.get(el.campoNomeFaturamento).clear().type(enderecoFaturamento.nome)

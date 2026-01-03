@@ -15,3 +15,15 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+
+
+// A aplicação EBAC Shop possui um erro JavaScript intermitente
+// ("Cannot read properties of null (reading 'trigger')") que
+// não impacta o fluxo de navegação nem os cenários testados.
+// Para evitar falhas falsas nos testes E2E, esta exceção
+// específica é ignorada sem mascarar outros erros da aplicação.
+Cypress.on('uncaught:exception', (err) => {
+  if (err.message.includes('reading \'trigger\'')) {
+    return false
+  }
+})

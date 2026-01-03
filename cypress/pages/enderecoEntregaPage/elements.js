@@ -9,6 +9,7 @@ export const elements = {
     campoCidadeEntrega: '#shipping_city',
     campoEstadoEntrega: '#select2-shipping_state-container',
     campoCepEntrega: '#shipping_postcode',
-    botaoSalvarEndereco: '[name="save_address"]'
+    botaoSalvarEndereco: '[name="save_address"]',
+    mensagemErroCadastro: '.woocommerce-error'
 
 }
