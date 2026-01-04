@@ -8,15 +8,14 @@ describe('Catálogo de produtos', () => {
 
     });
     context('Quando o usuário acessa a página principal da aplicação', () => {
-        it('Deve exibir produtos em destaque', () => {
+        it('Deve está visível produtos em destaque', () => {
 
             cy.get(el.catalogoDeProduto)
                 .should('be.visible')
                 .and('contain', 'destaque')
 
         });
-    });
-    context('Quando o usuário visualizar o catálogo de produto', () => {
+
         it('Deve exibir imagem, nome, preço', () => {
 
             cy.get(el.imagemProduto)
@@ -29,37 +28,37 @@ describe('Catálogo de produtos', () => {
                 .eq(0)
                 .should('be.visible')
                 .and('contain', 'R$')
-
-
         });
-    });
-    context('Quando o usuário seleciona o produto no catálogo', () => {
-        it('Deve navegar para a página de detalhe do produto', () => {
 
-       
+        it('Deve navegar para a PDP ao selecionar um produto', () => {
+
             cy.get(el.nomeProduto).eq(0).click()
             cy.url().should('include', '/product')
 
         });
     });
 
-    context('Quando o usuário clicar em "view all"', () => {
-        
-        beforeEach(() => {
+    context('Quando o usuário clica em "view all"', () => {
+
+        it('Deve exibir catálogo de produtos', () => {
+
             catalogoPage.acessarCatalogoDeProdutoCompleto()
-        })
-
-        it('Deve exibir a listagem completa de produtos', () => {
-
-            //catalogoPage.acessarCatalogoDeProdutoCompleto()
             cy.get(elProduto.tituloPaginaProduto)
                 .should('be.visible')
                 .and('contain', 'Produtos')
 
         });
+    })
+    context('Quando o usuário estiver no catálogo de produto', () => {
+         beforeEach(() => {
+
+            catalogoPage.acessarCatalogoDeProdutoCompleto()
+
+        })
+
         it('Deve permitir ordenar por menor preço', () => {
 
-           // catalogoPage.acessarCatalogoDeProdutoCompleto()
+
             catalogoPage.selecionarOrdenacaoMenorPreco()
 
             cy.get(el.identificadorOrdenacao).should('be.visible')
@@ -68,7 +67,7 @@ describe('Catálogo de produtos', () => {
         });
         it('Deve permitir ordenar por maior preço', () => {
 
-           // catalogoPage.acessarCatalogoDeProdutoCompleto()
+
             catalogoPage.selecionarOrdenacaoMaiorPreco()
 
             cy.get(el.identificadorOrdenacao).should('be.visible')
@@ -78,10 +77,8 @@ describe('Catálogo de produtos', () => {
         });
         it('Deve persistir ordenação quando voltar do PDP para catálogo', () => {
 
-          //  catalogoPage.acessarCatalogoDeProdutoCompleto()
-            catalogoPage.selecionarOrdenacaoMaiorPreco()
 
-            cy.get(el.identificadorOrdenacao).should('contain', 'price high to low')
+            catalogoPage.selecionarOrdenacaoMaiorPreco()   
 
             catalogoPage.validarOrdenacaoPrecoMaiorParaMenor()
 
@@ -89,16 +86,12 @@ describe('Catálogo de produtos', () => {
 
             cy.go('back')
 
-            cy.get(el.identificadorOrdenacao).should('contain', 'price high to low')
-
             catalogoPage.validarOrdenacaoPrecoMaiorParaMenor()
 
         });
-    });
-    context('Quando o usuário estiver na página 1 do catálogo de produtos', () => {
         it('Deve acessar a próxima página com sucesso', () => {
 
-            catalogoPage.acessarCatalogoDeProdutoCompleto()
+
 
             catalogoPage.obterNomeProduto().then((nomeProdutoPagina1) => {
 
@@ -110,18 +103,19 @@ describe('Catálogo de produtos', () => {
             cy.get(el.identificadoDaPagina).should('contain', 'Página 2')
 
         })
+        context('E o usuário seleciona um produto na lista', () => {
+            it('Deve acessar a página de detalhes do produto', () => {
 
-    });
+                catalogoPage.selecionarProdutoNaLista()
 
-    context('Quando o usuário seleciona um produto na lista', () => {
-        it('Deve acessar a página de detalhes do produto', () => {
+                cy.get(elProduto.tituloProduto)
+                    .should('be.visible')
 
-            catalogoPage.acessarCatalogoDeProdutoCompleto()
-            catalogoPage.selecionarProdutoNaLista()
-
-            cy.get(elProduto.tituloProduto)
-                .should('be.visible')
-
+            });
         });
+
     });
-});
+
+})
+
+

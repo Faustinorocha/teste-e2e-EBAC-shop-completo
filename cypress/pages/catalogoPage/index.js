@@ -14,15 +14,14 @@ class CatalogoPage {
     }
     selecionarProdutoNaLista() {
         cy.get(el.listaDeProduto).eq(0).click()
+
     }
     selecionarOrdenacaoMenorPreco() {
         cy.get(el.ordenacaoProduto).select('price')
 
-
     }
     selecionarOrdenacaoMaiorPreco() {
         cy.get(el.ordenacaoProduto).select('price-desc')
-
 
     }
     obterNomeProduto() {
