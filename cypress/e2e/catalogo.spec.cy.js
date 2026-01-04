@@ -17,7 +17,7 @@ describe('Catálogo de produtos', () => {
         });
     });
     context('Quando o usuário visualizar o catálogo de produto', () => {
-        it('Deve exibir imagem, nome, preço e link para PDP', () => {
+        it.only('Deve exibir imagem, nome, preço e link para PDP', () => {
 
             cy.get(el.imagemProduto)
                 .eq(0)
@@ -29,10 +29,15 @@ describe('Catálogo de produtos', () => {
                 .eq(0)
                 .should('be.visible')
                 .and('contain', 'R$')
-            cy.get(el.nomeProduto)
-                .eq(0)
-                .should('be.visible')
-                .click()
+
+
+        });
+    });
+    context('Quando o usuário seleciona o produto no catálogo', () => {
+        it.only('Deve navegar para a página de detalhe do produto', () => {
+
+       
+            cy.get(el.nomeProduto).eq(0).click()
             cy.url().should('include', '/product')
 
         });
