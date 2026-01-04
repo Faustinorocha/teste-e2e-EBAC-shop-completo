@@ -17,7 +17,7 @@ describe('Catálogo de produtos', () => {
         });
     });
     context('Quando o usuário visualizar o catálogo de produto', () => {
-        it.only('Deve exibir imagem, nome, preço e link para PDP', () => {
+        it('Deve exibir imagem, nome, preço', () => {
 
             cy.get(el.imagemProduto)
                 .eq(0)
@@ -34,7 +34,7 @@ describe('Catálogo de produtos', () => {
         });
     });
     context('Quando o usuário seleciona o produto no catálogo', () => {
-        it.only('Deve navegar para a página de detalhe do produto', () => {
+        it('Deve navegar para a página de detalhe do produto', () => {
 
        
             cy.get(el.nomeProduto).eq(0).click()
