@@ -43,7 +43,7 @@ describe('Catálogo de produtos', () => {
         it('Deve exibir catálogo de produtos', () => {
 
             catalogoPage.acessarCatalogoDeProdutoCompleto()
-            cy.get(elProduto.tituloPaginaProduto)
+            cy.get(el.tituloPaginaProduto)
                 .should('be.visible')
                 .and('contain', 'Produtos')
 
@@ -75,10 +75,11 @@ describe('Catálogo de produtos', () => {
             catalogoPage.validarOrdenacaoPrecoMaiorParaMenor()
 
         });
-        it('Deve persistir ordenação quando voltar do PDP para catálogo', () => {
+        it.only('Deve persistir ordenação quando voltar do PDP para catálogo', () => {
 
 
-            catalogoPage.selecionarOrdenacaoMaiorPreco()   
+            catalogoPage.selecionarOrdenacaoMaiorPreco()  
+      
 
             catalogoPage.validarOrdenacaoPrecoMaiorParaMenor()
 
@@ -86,7 +87,9 @@ describe('Catálogo de produtos', () => {
 
             cy.go('back')
 
+           
             catalogoPage.validarOrdenacaoPrecoMaiorParaMenor()
+
 
         });
         it('Deve acessar a próxima página com sucesso', () => {

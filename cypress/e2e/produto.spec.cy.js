@@ -1,11 +1,14 @@
-describe('Produto', () => {
+describe('Produto (PDP)', () => {
     
-  beforeEach(() => {
-    // navegar pelo catálogo até um produto
+
+ beforeEach(() => {
+    
   })
 
   context('Quando o usuário acessa a página de detalhes do produto', () => {
-    it('Deve exibir nome, preço e imagem', () => {})
+    it('Deve exibir nome, preço e imagem', () => {
+        
+    })
   })
 
   context('Quando o usuário altera a quantidade', () => {

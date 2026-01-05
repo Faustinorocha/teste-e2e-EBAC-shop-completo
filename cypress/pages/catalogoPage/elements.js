@@ -11,9 +11,10 @@ export const elements = {
     imagemProduto: '.product-block .image-hover',
     nomeProduto: '.product-block .name',
     precoProduto: '.product-block .price',
-    ordenacaoProduto: '[name="orderby"]',
+    ordenacaoProduto: 'select[name="orderby"]',
     identificadorOrdenacao: '.woof_remove_ppi',
     proximaPaginaProduto: '.next',
-    identificadoDaPagina: '.breadscrumb-inner'
+    identificadoDaPagina: '.breadscrumb-inner',
+    tituloPaginaProduto: '.page-title'
 
 }

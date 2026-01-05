@@ -26,7 +26,7 @@ class CatalogoPage {
     }
     obterNomeProduto() {
         return cy.get(el.listaDeProduto)
-            .eq(0)
+            .first()
             .find('.name')
             .invoke('text')
             .then(text => text.trim())
@@ -34,7 +34,7 @@ class CatalogoPage {
 
     obterPrecoPrimeiroProduto() {
         return cy.get(el.listaDeProduto)
-            .eq(0)
+            .first()
             .find('.price')
             .invoke('text')
             .then(text => Number(text.replace('R$', '').replace(',', '.')))
