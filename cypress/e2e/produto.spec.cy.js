@@ -1,13 +1,19 @@
+import catalogoPage from "../pages/catalogoPage"
+import produtoPage from "../pages/produtoPage"
+
 describe('Produto (PDP)', () => {
     
 
  beforeEach(() => {
-    
+    catalogoPage.acessarPaginaPrincipal()
+    catalogoPage.acessarCatalogoDeProdutoCompleto()
+    catalogoPage.selecionarProdutoNaLista()
+
   })
 
   context('Quando o usuário acessa a página de detalhes do produto', () => {
-    it('Deve exibir nome, preço e imagem', () => {
-        
+    it.only('Deve exibir nome, preço e imagem', () => {
+        produtoPage.obterNomeProduto().should('be.visible')
     })
   })
 

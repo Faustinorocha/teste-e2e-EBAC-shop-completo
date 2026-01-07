@@ -75,7 +75,7 @@ describe('Catálogo de produtos', () => {
             catalogoPage.validarOrdenacaoPrecoMaiorParaMenor()
 
         });
-        it.only('Deve persistir ordenação quando voltar do PDP para catálogo', () => {
+        it('Deve persistir ordenação quando voltar do PDP para catálogo', () => {
 
 
             catalogoPage.selecionarOrdenacaoMaiorPreco()  
