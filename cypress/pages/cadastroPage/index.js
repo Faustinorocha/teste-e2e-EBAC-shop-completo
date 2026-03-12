@@ -1,4 +1,4 @@
-import { elements as el } from "./elements"
+import { elements as el } from "../cadastroPage/elements"
 
 
 class CadastroPage {
@@ -9,10 +9,13 @@ class CadastroPage {
         }
 
     realizarRegistroNovoUsuario(email, senha) {
-            cy.get(el.campoEmailRegistro).type(email)
+           // cy.get(th.campoEmailRegistro).type(email)
+           cy.get(el.campoEmailRegistro).type(email)
             cy.get(el.campoSenhaRegistro).type(senha)
             cy.get(el.botaoRegistro).click()
         }
 }
 
 export default new CadastroPage();
+
+
